@@ -11,15 +11,15 @@ public class SessionStorageService
         _jsInProcess = (IJSInProcessRuntime)_js;
     }
 
-    public async Task<T> GetItemAsync<T>(string key)
+    public async Task<T?> GetItemAsync<T>(string key)
     {
         var json = await _js.InvokeAsync<string>(
             "purchaseNexus.getSessionStorage",
             key);
 
-        return string.IsNullOrEmpty(json)
-                ? default
-                : System.Text.Json.JsonSerializer.Deserialize<T>(json);
+        return !string.IsNullOrEmpty(json)
+                ? System.Text.Json.JsonSerializer.Deserialize<T>(json)
+                : default;
     }
 
     public async Task SetItemAsync<T>(string key, T item)

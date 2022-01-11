@@ -8,7 +8,7 @@ public partial class TodoLists
 
     private ElementReference _newListModal;
 
-    private TodoList _newTodoList = new TodoList();
+    private TodoList _newTodoList = new ();
 
     private CustomValidation _customValidation;
 

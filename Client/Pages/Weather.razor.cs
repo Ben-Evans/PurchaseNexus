@@ -2,12 +2,12 @@
 
 public partial class Weather : ComponentBase
 {
-    [Inject] private IWeatherClient Client { get; set; }
+    [Inject] private IWeatherClient Client { get; set; } = NotNullHelper.Injected<IWeatherClient>();
 
-    private ICollection<WeatherForecast> forecasts;
+    private ICollection<WeatherForecast> _forecasts = new List<WeatherForecast>();
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Client.GetAsync();
+        _forecasts = await Client.GetAsync();
     }
 }

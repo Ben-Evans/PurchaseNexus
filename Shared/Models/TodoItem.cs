@@ -16,5 +16,5 @@ public class TodoItem
 
     public bool Done { get; set; }
 
-    public TodoList List { get; set; }
+    public TodoList List { get; set; } = NotNullHelper.NavigationProp<TodoList>();
 }

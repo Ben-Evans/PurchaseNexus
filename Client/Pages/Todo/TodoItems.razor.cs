@@ -4,7 +4,7 @@ public partial class TodoItems
 {
     [CascadingParameter] public TodoState State { get; set; }
 
-    public TodoItem SelectedItem { get; set; }
+    public TodoItem? SelectedItem { get; set; }
 
     private ElementReference _titleInput;
 

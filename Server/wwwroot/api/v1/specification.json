@@ -526,12 +526,10 @@
             "format": "int32"
           },
           "title": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "note": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "priority": {
             "$ref": "#/components/schemas/TodoItemPriority"
@@ -543,12 +541,7 @@
             "type": "boolean"
           },
           "list": {
-            "nullable": true,
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/TodoList"
-              }
-            ]
+            "$ref": "#/components/schemas/TodoList"
           }
         }
       },
@@ -593,12 +586,10 @@
             "format": "int32"
           },
           "title": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "items": {
             "type": "array",
-            "nullable": true,
             "items": {
               "$ref": "#/components/schemas/TodoItem"
             }
@@ -647,8 +638,7 @@
             "format": "int32"
           },
           "summary": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "temperatureF": {
             "type": "integer",

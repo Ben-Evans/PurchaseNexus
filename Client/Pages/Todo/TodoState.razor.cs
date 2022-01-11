@@ -4,19 +4,19 @@ public partial class TodoState
 {
     [Parameter] public RenderFragment ChildContent { get; set; }
 
-    [Inject] public ITodoListsClient TodoListsClient { get; set; }
+    [Inject] public ITodoListsClient TodoListsClient { get; set; } = NotNullHelper.Injected<ITodoListsClient>();
 
-    [Inject] public ITodoItemsClient TodoItemsClient { get; set; }
+    [Inject] public ITodoItemsClient TodoItemsClient { get; set; } = NotNullHelper.Injected<ITodoItemsClient>();
 
-    [Inject] public IJSInProcessRuntime JS { get; set; }
+    [Inject] public IJSInProcessRuntime JS { get; set; } = NotNullHelper.Injected<IJSInProcessRuntime>();
 
-    public ICollection<TodoList> TodoLists { get; set; }
+    public ICollection<TodoList> TodoLists { get; set; } = new List<TodoList>();
 
-    private TodoList _selectedList;
+    private TodoList _selectedList = NotNullHelper.OnInit<TodoList>();
 
     public TodoList SelectedList
     {
-        get { return _selectedList; }
+        get => _selectedList;
         set
         {
             _selectedList = value;

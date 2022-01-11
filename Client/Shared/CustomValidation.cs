@@ -2,7 +2,7 @@
 
 public class CustomValidation : ComponentBase
 {
-    private ValidationMessageStore _messageStore;
+    private ValidationMessageStore _messageStore = NotNullHelper.OnInit<ValidationMessageStore>();
 
     [CascadingParameter]
     private EditContext CurrentEditContext { get; set; }
