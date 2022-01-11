@@ -1,4 +1,4 @@
-﻿namespace BlazorDemo.Server;
+﻿namespace PurchaseNexus.Server;
 
 public class Program
 {

@@ -1,9 +1,9 @@
-﻿using BlazorDemo.Server.Data;
-using BlazorDemo.Shared;
+﻿using PurchaseNexus.Server.Data;
+using PurchaseNexus.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorDemo.Server.Controllers;
+namespace PurchaseNexus.Server.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

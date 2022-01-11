@@ -1,13 +1,13 @@
-﻿var blazorDemo = {};
+﻿var purchaseNexus = {};
 
-blazorDemo.setSessionStorage = function (key, data) {
+purchaseNexus.setSessionStorage = function (key, data) {
     sessionStorage.setItem(key, data);
 }
 
-blazorDemo.getSessionStorage = function (key) {
+purchaseNexus.getSessionStorage = function (key) {
     return sessionStorage.getItem(key);
 }
 
-blazorDemo.hideModal = function (element) {
+purchaseNexus.hideModal = function (element) {
     bootstrap.Modal.getInstance(element).hide();
 }

@@ -1,7 +1,7 @@
-﻿using BlazorDemo.Shared;
+﻿using PurchaseNexus.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorDemo.Client.Pages
+namespace PurchaseNexus.Client.Pages
 {
     public partial class Weather : ComponentBase
     {

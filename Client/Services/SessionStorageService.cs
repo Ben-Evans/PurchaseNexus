@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using Microsoft.JSInterop;
 
-namespace BlazorDemo.Client.Services
+namespace PurchaseNexus.Client.Services
 {
     public class SessionStorageService
     {
@@ -17,7 +17,7 @@ namespace BlazorDemo.Client.Services
         public async Task<T> GetItemAsync<T>(string key)
         {
             var json = await _js.InvokeAsync<string>(
-                "blazorDemo.getSessionStorage",
+                "purchaseNexus.getSessionStorage",
                 key);
 
             return string.IsNullOrEmpty(json)
@@ -28,7 +28,7 @@ namespace BlazorDemo.Client.Services
         public async Task SetItemAsync<T>(string key, T item)
         {
             await _js.InvokeVoidAsync(
-                "blazorDemo.setSessionStorage",
+                "purchaseNexus.setSessionStorage",
                 key,
                 JsonSerializer.Serialize(item));
         }
@@ -36,7 +36,7 @@ namespace BlazorDemo.Client.Services
         public void SetItem<T>(string key, T item)
         {
             _jsInProcess.InvokeVoid(
-                "blazorDemo.setSessionStorage",
+                "purchaseNexus.setSessionStorage",
                 key,
                 JsonSerializer.Serialize(item));
         }

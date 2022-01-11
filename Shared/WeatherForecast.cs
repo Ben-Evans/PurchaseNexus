@@ -1,4 +1,4 @@
-﻿namespace BlazorDemo.Shared;
+﻿namespace PurchaseNexus.Shared;
 
 public class WeatherForecast
 {

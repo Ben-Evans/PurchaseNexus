@@ -1,6 +1,6 @@
-﻿using BlazorDemo.Client;
-using BlazorDemo.Client.Services;
-using BlazorDemo.Shared;
+﻿using PurchaseNexus.Client;
+using PurchaseNexus.Client.Services;
+using PurchaseNexus.Shared;
 using FluentValidation;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;

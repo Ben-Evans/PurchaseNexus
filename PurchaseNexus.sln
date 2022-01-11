@@ -2,11 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 16.0.0.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo.Server", "Server\BlazorDemo.Server.csproj", "{7E6D6C5E-D0A5-4F5D-93AE-393665BF4752}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PurchaseNexus.Server", "Server\PurchaseNexus.Server.csproj", "{7E6D6C5E-D0A5-4F5D-93AE-393665BF4752}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo.Client", "Client\BlazorDemo.Client.csproj", "{C8BCA92B-BA69-4688-AC9F-3D92A40BA1AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PurchaseNexus.Client", "Client\PurchaseNexus.Client.csproj", "{C8BCA92B-BA69-4688-AC9F-3D92A40BA1AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo.Shared", "Shared\BlazorDemo.Shared.csproj", "{221CC841-7E2A-4B26-8A38-F614E592B387}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PurchaseNexus.Shared", "Shared\PurchaseNexus.Shared.csproj", "{221CC841-7E2A-4B26-8A38-F614E592B387}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

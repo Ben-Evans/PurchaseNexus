@@ -3,7 +3,7 @@
   "defaultVariables": null,
   "documentGenerator": {
     "aspNetCoreToOpenApi": {
-      "project": "BlazorDemo.Server.csproj",
+      "project": "PurchaseNexus.Server.csproj",
       "msBuildProjectExtensionsPath": null,
       "configuration": null,
       "runtime": null,
@@ -92,7 +92,7 @@
       "operationGenerationMode": "MultipleClientsFromOperationId",
       "additionalNamespaceUsages": [
         "Microsoft.AspNetCore.Mvc",
-        "BlazorDemo.Shared"
+        "PurchaseNexus.Shared"
       ],
       "additionalContractNamespaceUsages": [],
       "generateOptionalParameters": false,
@@ -106,7 +106,7 @@
       "wrapResponseMethods": [],
       "generateResponseClasses": true,
       "responseClass": "SwaggerResponse",
-      "namespace": "BlazorDemo.Client",
+      "namespace": "PurchaseNexus.Client",
       "requiredPropertiesMustBeDefined": true,
       "dateType": "System.DateTimeOffset",
       "jsonConverters": null,
@@ -144,7 +144,7 @@
       "checksumCacheEnabled": false,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "../Client/Services/BlazorDemoApiClients.g.cs",
+      "output": "../Client/Services/PurchaseNexusApiClients.g.cs",
       "newLineBehavior": "Auto"
     }
   }

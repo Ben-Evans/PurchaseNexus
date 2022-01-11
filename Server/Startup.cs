@@ -1,10 +1,10 @@
 ﻿using System.Text.Json.Serialization;
-using BlazorDemo.Server.Data;
-using BlazorDemo.Server.Validators;
+using PurchaseNexus.Server.Data;
+using PurchaseNexus.Server.Validators;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorDemo.Server;
+namespace PurchaseNexus.Server;
 
 public class Startup
 {
@@ -34,7 +34,7 @@ public class Startup
 
         services.AddOpenApiDocument(configure =>
         {
-            configure.Title = "BlazorDemo API";
+            configure.Title = "PurchaseNexus API";
         });
     }
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

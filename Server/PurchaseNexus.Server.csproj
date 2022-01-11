@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Client\BlazorDemo.Client.csproj" />
-    <ProjectReference Include="..\Shared\BlazorDemo.Shared.csproj" />
+    <ProjectReference Include="..\Client\PurchaseNexus.Client.csproj" />
+    <ProjectReference Include="..\Shared\PurchaseNexus.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

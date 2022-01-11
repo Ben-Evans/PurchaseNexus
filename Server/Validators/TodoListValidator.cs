@@ -1,9 +1,9 @@
-﻿using BlazorDemo.Server.Data;
-using BlazorDemo.Shared;
+﻿using PurchaseNexus.Server.Data;
+using PurchaseNexus.Shared;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorDemo.Server.Validators
+namespace PurchaseNexus.Server.Validators
 {
     public class TodoListValidator : Shared.TodoListValidator
     {

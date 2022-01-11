@@ -1,8 +1,8 @@
-﻿using BlazorDemo.Shared;
+﻿using PurchaseNexus.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace BlazorDemo.Client.Pages.Todo
+namespace PurchaseNexus.Client.Pages.Todo
 {
     public partial class TodoState
     {

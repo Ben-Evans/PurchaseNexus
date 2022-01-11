@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
-namespace BlazorDemo.Client.Shared
+namespace PurchaseNexus.Client.Shared
 {
     public class CustomValidation : ComponentBase
     {

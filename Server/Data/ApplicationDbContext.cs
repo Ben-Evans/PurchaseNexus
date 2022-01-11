@@ -1,7 +1,7 @@
-﻿using BlazorDemo.Shared;
+﻿using PurchaseNexus.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorDemo.Server.Data;
+namespace PurchaseNexus.Server.Data;
 
 public class ApplicationDbContext : DbContext
 {

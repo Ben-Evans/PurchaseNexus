@@ -1,11 +1,11 @@
-﻿using BlazorDemo.Client.Shared;
-using BlazorDemo.Shared;
+﻿using PurchaseNexus.Client.Shared;
+using PurchaseNexus.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.JSInterop;
 using Newtonsoft.Json;
 
-namespace BlazorDemo.Client.Pages.Todo
+namespace PurchaseNexus.Client.Pages.Todo
 {
     public partial class TodoLists
     {

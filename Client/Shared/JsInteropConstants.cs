@@ -1,8 +1,8 @@
-﻿namespace BlazorDemo.Client.Shared
+﻿namespace PurchaseNexus.Client.Shared
 {
     public static class JsInteropConstants
     {
-        private const string FuncPrefix = "blazorDemo";
+        private const string FuncPrefix = "purchaseNexus";
 
         public const string GetSessionStorage = $"{FuncPrefix}.getSessionStorage";
 

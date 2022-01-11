@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace BlazorDemo.Shared
+namespace PurchaseNexus.Shared
 {
     public class TodoListValidator : AbstractValidator<TodoList>
     {

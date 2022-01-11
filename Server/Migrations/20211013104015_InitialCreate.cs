@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace BlazorDemo.Server.Migrations
+namespace PurchaseNexus.Server.Migrations
 {
     public partial class InitialCreate : Migration
     {
