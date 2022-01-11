@@ -1,7 +1,4 @@
-﻿using System.Text.Json;
-using Microsoft.JSInterop;
-
-namespace PurchaseNexus.Client.Services;
+﻿namespace PurchaseNexus.Client.Services;
 
 public class SessionStorageService
 {
@@ -22,7 +19,7 @@ public class SessionStorageService
 
         return string.IsNullOrEmpty(json)
                 ? default
-                : JsonSerializer.Deserialize<T>(json);
+                : System.Text.Json.JsonSerializer.Deserialize<T>(json);
     }
 
     public async Task SetItemAsync<T>(string key, T item)
@@ -30,7 +27,7 @@ public class SessionStorageService
         await _js.InvokeVoidAsync(
             "purchaseNexus.setSessionStorage",
             key,
-            JsonSerializer.Serialize(item));
+            System.Text.Json.JsonSerializer.Serialize(item));
     }
 
     public void SetItem<T>(string key, T item)
@@ -38,6 +35,6 @@ public class SessionStorageService
         _jsInProcess.InvokeVoid(
             "purchaseNexus.setSessionStorage",
             key,
-            JsonSerializer.Serialize(item));
+            System.Text.Json.JsonSerializer.Serialize(item));
     }
 }

@@ -1,11 +1,6 @@
-﻿using PurchaseNexus.Server.Data;
-using PurchaseNexus.Shared;
-using FluentValidation;
-using Microsoft.EntityFrameworkCore;
+﻿namespace PurchaseNexus.Server.Validators;
 
-namespace PurchaseNexus.Server.Validators;
-
-public class TodoListValidator : Shared.TodoListValidator
+public class TodoListValidator : Shared.Validators.TodoListValidator
 {
     private readonly ApplicationDbContext _context;
 

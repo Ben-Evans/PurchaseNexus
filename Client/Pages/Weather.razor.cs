@@ -1,7 +1,4 @@
-﻿using PurchaseNexus.Shared;
-using Microsoft.AspNetCore.Components;
-
-namespace PurchaseNexus.Client.Pages;
+﻿namespace PurchaseNexus.Client.Pages;
 
 public partial class Weather : ComponentBase
 {

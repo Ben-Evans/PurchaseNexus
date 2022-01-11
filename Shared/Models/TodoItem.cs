@@ -1,4 +1,4 @@
-﻿namespace PurchaseNexus.Shared;
+﻿namespace PurchaseNexus.Shared.Models;
 
 public class TodoItem
 {

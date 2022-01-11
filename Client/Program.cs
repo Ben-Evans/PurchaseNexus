@@ -1,11 +1,10 @@
 ﻿using PurchaseNexus.Client;
 using PurchaseNexus.Client.Services;
-using PurchaseNexus.Shared;
 using FluentValidation;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.JSInterop;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
+using PurchaseNexus.Shared.Validators;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");

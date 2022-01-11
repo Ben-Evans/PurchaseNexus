@@ -1,8 +1,4 @@
-﻿using PurchaseNexus.Shared;
-using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-
-namespace PurchaseNexus.Client.Pages.Todo;
+﻿namespace PurchaseNexus.Client.Pages.Todo;
 
 public partial class TodoState
 {

@@ -1,8 +1,6 @@
 ﻿using System.Text.Json.Serialization;
-using PurchaseNexus.Server.Data;
 using PurchaseNexus.Server.Validators;
 using FluentValidation.AspNetCore;
-using Microsoft.EntityFrameworkCore;
 
 namespace PurchaseNexus.Server;
 

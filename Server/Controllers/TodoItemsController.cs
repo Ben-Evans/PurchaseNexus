@@ -1,9 +1,4 @@
-﻿using PurchaseNexus.Server.Data;
-using PurchaseNexus.Shared;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
-namespace PurchaseNexus.Server.Controllers;
+﻿namespace PurchaseNexus.Server.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

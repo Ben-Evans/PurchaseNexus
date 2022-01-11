@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace PurchaseNexus.Shared;
+namespace PurchaseNexus.Shared.Validators;
 
 public class TodoListValidator : AbstractValidator<TodoList>
 {

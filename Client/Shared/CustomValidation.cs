@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
-
-namespace PurchaseNexus.Client.Shared;
+﻿namespace PurchaseNexus.Client.Shared;
 
 public class CustomValidation : ComponentBase
 {

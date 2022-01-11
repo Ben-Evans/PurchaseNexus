@@ -1,7 +1,4 @@
-﻿using PurchaseNexus.Shared;
-using Microsoft.EntityFrameworkCore;
-
-namespace PurchaseNexus.Server.Data;
+﻿namespace PurchaseNexus.Server.Data;
 
 public class ApplicationDbContext : DbContext
 {
