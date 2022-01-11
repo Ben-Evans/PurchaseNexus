@@ -3,26 +3,25 @@ using PurchaseNexus.Shared;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
-namespace PurchaseNexus.Server.Validators
+namespace PurchaseNexus.Server.Validators;
+
+public class TodoListValidator : Shared.TodoListValidator
 {
-    public class TodoListValidator : Shared.TodoListValidator
+    private readonly ApplicationDbContext _context;
+
+    public TodoListValidator(ApplicationDbContext context) : base()
     {
-        private readonly ApplicationDbContext _context;
+        _context = context;
 
-        public TodoListValidator(ApplicationDbContext context) : base()
-        {
-            _context = context;
+        RuleFor(v => v.Title)
+            .MustAsync(BeUniqueTitle)
+                .WithMessage("'Title' must be unique.");
+    }
 
-            RuleFor(v => v.Title)
-                .MustAsync(BeUniqueTitle)
-                    .WithMessage("'Title' must be unique.");
-        }
-
-        public async Task<bool> BeUniqueTitle(TodoList list, string title, CancellationToken cancellationToken)
-        {
-            return await _context.TodoLists
-                .Where(tl => tl.Id != list.Id)
-                .AllAsync(tl => tl.Title != title, cancellationToken);
-        }
+    public async Task<bool> BeUniqueTitle(TodoList list, string title, CancellationToken cancellationToken)
+    {
+        return await _context.TodoLists
+            .Where(tl => tl.Id != list.Id)
+            .AllAsync(tl => tl.Title != title, cancellationToken);
     }
 }

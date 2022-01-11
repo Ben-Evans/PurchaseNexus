@@ -3,100 +3,99 @@ using PurchaseNexus.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace PurchaseNexus.Client.Pages.Todo
+namespace PurchaseNexus.Client.Pages.Todo;
+
+public partial class TodoItems
 {
-    public partial class TodoItems
+    [CascadingParameter] public TodoState State { get; set; }
+
+    public TodoItem SelectedItem { get; set; }
+
+    private ElementReference _titleInput;
+
+    private ElementReference _listOptionsModal;
+
+    public bool IsSelectedItem(TodoItem item)
     {
-        [CascadingParameter] public TodoState State { get; set; }
+        return SelectedItem == item;
 
-        public TodoItem SelectedItem { get; set; }
+    }
 
-        private ElementReference _titleInput;
+    private async Task AddItem()
+    {
+        var newItem = new TodoItem { ListId = State.SelectedList.Id };
 
-        private ElementReference _listOptionsModal;
+        State.SelectedList.Items.Add(newItem);
 
-        public bool IsSelectedItem(TodoItem item)
+        await EditItem(newItem);
+    }
+
+    private async Task ToggleDone(TodoItem item, ChangeEventArgs args)
+    {
+        if (args != null && args.Value is bool value)
         {
-            return SelectedItem == item;
+            item.Done = value;
 
+            await State.TodoItemsClient.PutTodoItemAsync(item.Id, item);
         }
+    }
 
-        private async Task AddItem()
+    private async Task EditItem(TodoItem item)
+    {
+        SelectedItem = item;
+
+        await Task.Delay(50);
+
+        if (_titleInput.Context != null)
         {
-            var newItem = new TodoItem { ListId = State.SelectedList.Id };
-
-            State.SelectedList.Items.Add(newItem);
-
-            await EditItem(newItem);
+            await _titleInput.FocusAsync();
         }
+    }
 
-        private async Task ToggleDone(TodoItem item, ChangeEventArgs args)
+    private async Task SaveItem()
+    {
+        if (SelectedItem.Id == 0)
         {
-            if (args != null && args.Value is bool value)
+            if (string.IsNullOrWhiteSpace(SelectedItem.Title))
             {
-                item.Done = value;
-
-                await State.TodoItemsClient.PutTodoItemAsync(item.Id, item);
-            }
-        }
-
-        private async Task EditItem(TodoItem item)
-        {
-            SelectedItem = item;
-
-            await Task.Delay(50);
-
-            if (_titleInput.Context != null)
-            {
-                await _titleInput.FocusAsync();
-            }
-        }
-
-        private async Task SaveItem()
-        {
-            if (SelectedItem.Id == 0)
-            {
-                if (string.IsNullOrWhiteSpace(SelectedItem.Title))
-                {
-                    State.SelectedList.Items.Remove(SelectedItem);
-                }
-                else
-                {
-                    var item = await State.TodoItemsClient.PostTodoItemAsync(SelectedItem);
-
-                    SelectedItem.Id = item.Id;
-                }
+                State.SelectedList.Items.Remove(SelectedItem);
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(SelectedItem.Title))
-                {
-                    await State.TodoItemsClient.DeleteTodoItemAsync(SelectedItem.Id);
-                    State.SelectedList.Items.Remove(SelectedItem);
-                }
-                else
-                {
-                    await State.TodoItemsClient.PutTodoItemAsync(SelectedItem.Id, SelectedItem);
-                }
+                var item = await State.TodoItemsClient.PostTodoItemAsync(SelectedItem);
+
+                SelectedItem.Id = item.Id;
             }
         }
-
-        private async Task SaveList()
+        else
         {
-            await State.TodoListsClient.PutTodoListAsync(State.SelectedList.Id, State.SelectedList);
-
-            State.JS.InvokeVoid(JsInteropConstants.HideModal, _listOptionsModal);
-
-            State.SyncList();
+            if (string.IsNullOrWhiteSpace(SelectedItem.Title))
+            {
+                await State.TodoItemsClient.DeleteTodoItemAsync(SelectedItem.Id);
+                State.SelectedList.Items.Remove(SelectedItem);
+            }
+            else
+            {
+                await State.TodoItemsClient.PutTodoItemAsync(SelectedItem.Id, SelectedItem);
+            }
         }
+    }
 
-        private async Task DeleteList()
-        {
-            await State.TodoListsClient.DeleteTodoListAsync(State.SelectedList.Id);
+    private async Task SaveList()
+    {
+        await State.TodoListsClient.PutTodoListAsync(State.SelectedList.Id, State.SelectedList);
 
-            State.JS.InvokeVoid(JsInteropConstants.HideModal, _listOptionsModal);
+        State.JS.InvokeVoid(JsInteropConstants.HideModal, _listOptionsModal);
 
-            await State.DeleteList();
-        }
+        State.SyncList();
+    }
+
+    private async Task DeleteList()
+    {
+        await State.TodoListsClient.DeleteTodoListAsync(State.SelectedList.Id);
+
+        State.JS.InvokeVoid(JsInteropConstants.HideModal, _listOptionsModal);
+
+        await State.DeleteList();
     }
 }

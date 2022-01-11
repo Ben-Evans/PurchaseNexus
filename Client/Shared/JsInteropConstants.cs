@@ -1,13 +1,12 @@
-﻿namespace PurchaseNexus.Client.Shared
+﻿namespace PurchaseNexus.Client.Shared;
+
+public static class JsInteropConstants
 {
-    public static class JsInteropConstants
-    {
-        private const string FuncPrefix = "purchaseNexus";
+    private const string FuncPrefix = "purchaseNexus";
 
-        public const string GetSessionStorage = $"{FuncPrefix}.getSessionStorage";
+    public const string GetSessionStorage = $"{FuncPrefix}.getSessionStorage";
 
-        public const string SetSessionStorage = $"{FuncPrefix}.setSessionStorage";
+    public const string SetSessionStorage = $"{FuncPrefix}.setSessionStorage";
 
-        public const string HideModal = $"{FuncPrefix}.hideModal";
-    }
+    public const string HideModal = $"{FuncPrefix}.hideModal";
 }

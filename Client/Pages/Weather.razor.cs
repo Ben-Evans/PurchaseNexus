@@ -1,17 +1,16 @@
 ﻿using PurchaseNexus.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace PurchaseNexus.Client.Pages
+namespace PurchaseNexus.Client.Pages;
+
+public partial class Weather : ComponentBase
 {
-    public partial class Weather : ComponentBase
+    [Inject] private IWeatherClient Client { get; set; }
+
+    private ICollection<WeatherForecast> forecasts;
+
+    protected override async Task OnInitializedAsync()
     {
-        [Inject] private IWeatherClient Client { get; set; }
-
-        private ICollection<WeatherForecast> forecasts;
-
-        protected override async Task OnInitializedAsync()
-        {
-            forecasts = await Client.GetAsync();
-        }
+        forecasts = await Client.GetAsync();
     }
 }

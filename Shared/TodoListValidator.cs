@@ -1,13 +1,12 @@
 ﻿using FluentValidation;
 
-namespace PurchaseNexus.Shared
+namespace PurchaseNexus.Shared;
+
+public class TodoListValidator : AbstractValidator<TodoList>
 {
-    public class TodoListValidator : AbstractValidator<TodoList>
+    public TodoListValidator()
     {
-        public TodoListValidator()
-        {
-            RuleFor(p => p.Title)
-                .NotEmpty();
-        }
+        RuleFor(p => p.Title)
+            .NotEmpty();
     }
 }
