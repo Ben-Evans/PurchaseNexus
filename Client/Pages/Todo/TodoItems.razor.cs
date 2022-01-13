@@ -47,8 +47,17 @@ public partial class TodoItems
         }
     }
 
+    private async Task UnselectItem()
+    {
+        await SaveItem();
+        SelectedItem = null; // Called onBlur, therefore unselect item
+    }
+
     private async Task SaveItem()
     {
+        // TODO: Log issue then throw exception
+        if (SelectedItem is null) throw new NullReferenceException($"Called {nameof(SaveItem)} with null {nameof(SelectedItem)}");
+
         if (SelectedItem.Id == 0)
         {
             if (string.IsNullOrWhiteSpace(SelectedItem.Title))
