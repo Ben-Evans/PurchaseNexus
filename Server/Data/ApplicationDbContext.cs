@@ -1,4 +1,6 @@
-﻿namespace PurchaseNexus.Server.Data;
+﻿using System.Reflection;
+
+namespace PurchaseNexus.Server.Data;
 
 public class ApplicationDbContext : DbContext
 {
@@ -9,16 +11,22 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<TodoItem> TodoItems => Set<TodoItem>();
 
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        base.ConfigureConventions(configurationBuilder);
+
+        configurationBuilder
+            .Properties<string>() //.AreUnicode(false)
+            .HaveMaxLength(50);
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        SeedData(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-        // Navigation properties, likely only set by EF
-        modelBuilder.Entity<TodoItem>()
-            .HasOne(x => x.TodoList)
-            .WithMany(x => x.Items);
+        SeedData(modelBuilder);
     }
 
     private static void SeedData(ModelBuilder modelBuilder)
