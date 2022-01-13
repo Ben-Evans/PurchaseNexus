@@ -521,7 +521,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "listId": {
+          "todoListId": {
             "type": "integer",
             "format": "int32"
           },
@@ -540,7 +540,7 @@
           "done": {
             "type": "boolean"
           },
-          "list": {
+          "todoList": {
             "nullable": true,
             "oneOf": [
               {

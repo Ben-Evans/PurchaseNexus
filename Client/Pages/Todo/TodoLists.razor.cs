@@ -2,19 +2,19 @@
 
 public partial class TodoLists
 {
-    [CascadingParameter] public TodoState State { get; set; }
+    [CascadingParameter] public TodoState State { get; set; } = NotNullHelper.CascadingParam<TodoState>();
 
     private ElementReference _titleInput;
 
     private ElementReference _newListModal;
 
-    private TodoList _newTodoList = new ();
+    private TodoList _newTodoList = new (string.Empty);
 
-    private CustomValidation _customValidation;
+    private CustomValidation _customValidation = NotNullHelper.Ref<CustomValidation>();
 
     private async Task NewList()
     {
-        _newTodoList = new TodoList();
+        _newTodoList = new TodoList(string.Empty);
 
         await Task.Delay(500);
 
@@ -50,10 +50,7 @@ public partial class TodoLists
 
     }
 
-    private bool IsSelected(TodoList list)
-    {
-        return State.SelectedList.Id == list.Id;
-    }
+    private bool IsSelected(TodoList list) => State.SelectedList?.Id == list.Id;
 
     private async Task SelectList(TodoList list)
     {

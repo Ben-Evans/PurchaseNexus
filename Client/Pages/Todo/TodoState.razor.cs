@@ -2,7 +2,7 @@
 
 public partial class TodoState
 {
-    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; } = NotNullHelper.Param<RenderFragment>();
 
     [Inject] public ITodoListsClient TodoListsClient { get; set; } = NotNullHelper.Injected<ITodoListsClient>();
 
@@ -12,9 +12,9 @@ public partial class TodoState
 
     public ICollection<TodoList> TodoLists { get; set; } = new List<TodoList>();
 
-    private TodoList _selectedList = NotNullHelper.OnInit<TodoList>();
+    private TodoList? _selectedList;
 
-    public TodoList SelectedList
+    public TodoList? SelectedList
     {
         get => _selectedList;
         set
@@ -26,20 +26,24 @@ public partial class TodoState
 
     public void SyncList()
     {
-        var list = TodoLists.First(l => l.Id == SelectedList.Id);
+        var defaultTodoList = TodoLists.FirstOrDefault(l => l.Id == SelectedList?.Id);
+        if (SelectedList is null) throw new NullReferenceException($"Called {nameof(SyncList)} with null {nameof(SelectedList)}");
+        else if (defaultTodoList is null) throw new NullReferenceException($"Called {nameof(SyncList)} with null {nameof(defaultTodoList)}");
 
-        list.Title = SelectedList.Title;
+        defaultTodoList.Title = SelectedList.Title;
 
         StateHasChanged();
     }
 
     public async Task DeleteList()
     {
-        var list = TodoLists.First(l => l.Id == SelectedList.Id);
+        var defaultTodoList = TodoLists.FirstOrDefault(l => l.Id == SelectedList?.Id);
+        if (defaultTodoList is null) throw new NullReferenceException($"Called {nameof(DeleteList)} with null {nameof(defaultTodoList)}");
 
-        TodoLists.Remove(list);
+        TodoLists.Remove(defaultTodoList);
 
-        SelectedList = await TodoListsClient.GetTodoListAsync(TodoLists.First().Id);
+        defaultTodoList = TodoLists.FirstOrDefault();
+        SelectedList = defaultTodoList is not null ? await TodoListsClient.GetTodoListAsync(defaultTodoList.Id) : default;
 
         StateHasChanged();
     }
@@ -49,7 +53,8 @@ public partial class TodoState
     protected override async Task OnInitializedAsync()
     {
         TodoLists = await TodoListsClient.GetTodoListsAsync();
-        SelectedList = await TodoListsClient.GetTodoListAsync(TodoLists.First().Id);
         Initialised = true;
+        var selectedListId = TodoLists.FirstOrDefault()?.Id;
+        SelectedList = selectedListId is not null ? await TodoListsClient.GetTodoListAsync(selectedListId.Value) : default;
     }
 }

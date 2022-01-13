@@ -2,7 +2,7 @@
 
 public partial class TodoItems
 {
-    [CascadingParameter] public TodoState State { get; set; }
+    [CascadingParameter] public TodoState State { get; set; } = NotNullHelper.CascadingParam<TodoState>();
 
     public TodoItem? SelectedItem { get; set; }
 
@@ -18,6 +18,8 @@ public partial class TodoItems
 
     private async Task AddItem()
     {
+        if (State.SelectedList is null) throw new NullReferenceException($"Called {nameof(AddItem)} with null {nameof(State.SelectedList)}");
+
         TodoItem newItem = new(string.Empty, State.SelectedList.Id);
 
         State.SelectedList.Items.Add(newItem);
@@ -57,6 +59,7 @@ public partial class TodoItems
     {
         // TODO: Log issue then throw exception
         if (SelectedItem is null) throw new NullReferenceException($"Called {nameof(SaveItem)} with null {nameof(SelectedItem)}");
+        else if (State.SelectedList is null) throw new NullReferenceException($"Called {nameof(SaveItem)} with null {nameof(State.SelectedList)}");
 
         if (SelectedItem.Id == 0)
         {
@@ -87,6 +90,8 @@ public partial class TodoItems
 
     private async Task SaveList()
     {
+        if (State.SelectedList is null) throw new NullReferenceException($"Called {nameof(SaveList)} with null {nameof(State.SelectedList)}");
+
         await State.TodoListsClient.PutTodoListAsync(State.SelectedList.Id, State.SelectedList);
 
         State.JS.InvokeVoid(JsInteropConstants.HideModal, _listOptionsModal);
@@ -96,6 +101,8 @@ public partial class TodoItems
 
     private async Task DeleteList()
     {
+        if (State.SelectedList is null) throw new NullReferenceException($"Called {nameof(DeleteList)} with null {nameof(State.SelectedList)}");
+
         await State.TodoListsClient.DeleteTodoListAsync(State.SelectedList.Id);
 
         State.JS.InvokeVoid(JsInteropConstants.HideModal, _listOptionsModal);

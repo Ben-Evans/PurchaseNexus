@@ -13,9 +13,18 @@ public class ApplicationDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        SeedData(modelBuilder);
+
+        // Navigation properties, likely only set by EF
+        modelBuilder.Entity<TodoItem>()
+            .HasOne(x => x.TodoList)
+            .WithMany(x => x.Items);
+    }
+
+    private static void SeedData(ModelBuilder modelBuilder)
+    {
         var todoList = new TodoList("Todo List") { Id = 1 };
-        modelBuilder.Entity<TodoList>().HasData(
-            todoList);
+        modelBuilder.Entity<TodoList>().HasData(todoList);
 
         modelBuilder.Entity<TodoItem>().HasData(
             new TodoItem("Make a todo list", todoList.Id) { Id = 1 },

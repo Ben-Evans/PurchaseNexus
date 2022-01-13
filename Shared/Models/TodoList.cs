@@ -2,7 +2,7 @@
 
 public class TodoList
 {
-    public TodoList(string title = "")
+    public TodoList(string title)
     {
         Title = title;
     }

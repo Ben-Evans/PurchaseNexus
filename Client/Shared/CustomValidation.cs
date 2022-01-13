@@ -1,12 +1,14 @@
-﻿namespace PurchaseNexus.Client.Shared;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace PurchaseNexus.Client.Shared;
 
 public class CustomValidation : ComponentBase
 {
     private ValidationMessageStore _messageStore = NotNullHelper.OnInit<ValidationMessageStore>();
 
-    [CascadingParameter]
-    private EditContext CurrentEditContext { get; set; }
+    [CascadingParameter] private EditContext CurrentEditContext { get; set; } = NotNullHelper.CascadingParam<EditContext>();
 
+    [MemberNotNull(nameof(_messageStore))]
     protected override void OnInitialized()
     {
         if (CurrentEditContext == null)

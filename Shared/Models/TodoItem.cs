@@ -1,16 +1,23 @@
-﻿namespace PurchaseNexus.Shared.Models;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace PurchaseNexus.Shared.Models;
 
 public class TodoItem
 {
-    public TodoItem(string title, int listId)
+    public TodoItem(string title, int todoListId)
     {
         Title = title;
-        ListId = listId;
+        TodoListId = todoListId;
     }
+
+    /// <summary>
+    /// Parameterless Constructor for use with EF
+    /// </summary>
+    private TodoItem() => DbInit();
 
     public int Id { get; set; }
 
-    public int ListId { get; set; }
+    public int TodoListId { get; set; }
 
     public string Title { get; set; } = string.Empty;
 
@@ -22,5 +29,11 @@ public class TodoItem
 
     public bool Done { get; set; }
 
-    public TodoList? List { get; set; }
+    public TodoList? TodoList { get; set; }
+
+    [MemberNotNull(nameof(TodoList))]
+    private void DbInit()
+    {
+        TodoList = NotNullHelper.NavigationProp<TodoList>();
+    }
 }

@@ -9,7 +9,7 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-	[CascadingParameter] public AppState AppState { get; set; } = null!;
+    [CascadingParameter] public AppState AppState { get; set; } = NotNullHelper.CascadingParam<AppState>();
 
     private void IncrementCount()
     {

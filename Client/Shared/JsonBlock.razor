@@ -5,6 +5,5 @@
 </div>
 
 @code {
-	[Parameter]
-	public object Data { get; set; } = null!;
+	[Parameter] public object Data { get; set; } = NotNullHelper.Param<object>();
 }

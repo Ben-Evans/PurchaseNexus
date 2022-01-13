@@ -1,4 +1,4 @@
-﻿@if (State.Initialised)
+﻿@if (State.Initialised && State.SelectedList is not null)
 {
 	<div class="clearfix">
 		<h2 class="float-start">@State.SelectedList.Title</h2>

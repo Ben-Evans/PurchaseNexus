@@ -18,5 +18,5 @@
 </div>
 
 @code {
-	[CascadingParameter] AppState AppState { get; set; }
+    [CascadingParameter] AppState AppState { get; set; } = NotNullHelper.CascadingParam<AppState>();
 }
