@@ -42,7 +42,7 @@ public partial class TodoLists
         {
             var problemDetails = JsonConvert.DeserializeObject<ValidationProblemDetails>(ex.Response);
 
-            if (problemDetails != null)
+            if (problemDetails is not null)
             {
                 _customValidation.DisplayErrors(problemDetails.Errors);
             }
@@ -54,7 +54,7 @@ public partial class TodoLists
 
     private async Task SelectList(TodoList list)
     {
-        if (IsSelected(list)) return;
+        if (IsSelected(list)) return; // No need to re-select already selected list
 
         State.SelectedList = await State.TodoListsClient.GetTodoListAsync(list.Id);
     }

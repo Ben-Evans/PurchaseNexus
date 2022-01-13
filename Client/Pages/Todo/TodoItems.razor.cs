@@ -10,11 +10,7 @@ public partial class TodoItems
 
     private ElementReference _listOptionsModal;
 
-    public bool IsSelectedItem(TodoItem item)
-    {
-        return SelectedItem == item;
-
-    }
+    public bool IsSelectedItem(TodoItem item) => SelectedItem == item;
 
     private async Task AddItem()
     {
@@ -29,7 +25,7 @@ public partial class TodoItems
 
     private async Task ToggleDone(TodoItem item, ChangeEventArgs args)
     {
-        if (args != null && args.Value is bool value)
+        if (args is not null && args.Value is bool value)
         {
             item.Done = value;
 

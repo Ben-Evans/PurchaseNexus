@@ -48,13 +48,13 @@ public partial class TodoState
         StateHasChanged();
     }
 
-    public bool Initialised { get; set; }
+    public bool Initialized { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         TodoLists = await TodoListsClient.GetTodoListsAsync();
-        Initialised = true;
         var selectedListId = TodoLists.FirstOrDefault()?.Id;
         SelectedList = selectedListId is not null ? await TodoListsClient.GetTodoListAsync(selectedListId.Value) : default;
+        Initialized = true;
     }
 }
