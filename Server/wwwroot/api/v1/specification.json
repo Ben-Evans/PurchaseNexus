@@ -541,7 +541,12 @@
             "type": "boolean"
           },
           "list": {
-            "$ref": "#/components/schemas/TodoList"
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TodoList"
+              }
+            ]
           }
         }
       },

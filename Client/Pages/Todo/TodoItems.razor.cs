@@ -18,7 +18,7 @@ public partial class TodoItems
 
     private async Task AddItem()
     {
-        var newItem = new TodoItem { ListId = State.SelectedList.Id };
+        TodoItem newItem = new(string.Empty, State.SelectedList.Id);
 
         State.SelectedList.Items.Add(newItem);
 

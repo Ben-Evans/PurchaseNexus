@@ -2,6 +2,12 @@
 
 public class TodoItem
 {
+    public TodoItem(string title, int listId)
+    {
+        Title = title;
+        ListId = listId;
+    }
+
     public int Id { get; set; }
 
     public int ListId { get; set; }
@@ -16,5 +22,5 @@ public class TodoItem
 
     public bool Done { get; set; }
 
-    public TodoList List { get; set; } = NotNullHelper.NavigationProp<TodoList>();
+    public TodoList? List { get; set; }
 }
