@@ -6,3 +6,5 @@ global using Newtonsoft.Json;
 global using PurchaseNexus.Client.Shared;
 global using PurchaseNexus.Shared.Models;
 global using PurchaseNexus.Shared.Utilities;
+global using Serilog;
+global using ILogger = Serilog.ILogger;

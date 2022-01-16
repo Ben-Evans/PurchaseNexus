@@ -15,6 +15,8 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        Log.Information("Starting host service configuration.");
+
         var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
         services.AddDbContext<ApplicationDbContext>(options =>
@@ -34,9 +36,14 @@ public class Startup
         {
             configure.Title = "PurchaseNexus API";
         });
+
+        Log.Information("Completed host service configuration.");
     }
+
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
+        Log.Information("Starting host configuration.");
+
         // Configure the HTTP request pipeline.
         if (env.IsDevelopment())
         {
@@ -55,6 +62,9 @@ public class Startup
         app.UseBlazorFrameworkFiles();
         app.UseStaticFiles();
 
+        app.SetupClientLoggingReceiver();
+        app.SetupRequestLogging();
+
         app.UseSwaggerUi3(configure =>
             configure.DocumentPath = "/api/v1/specification.json");
 
@@ -66,5 +76,7 @@ public class Startup
             endpoints.MapControllers();
             endpoints.MapFallbackToFile("index.html");
         });
+
+        Log.Information("Completed host configuration.");
     }
 }

@@ -1,4 +1,6 @@
-﻿<div class="alert alert-secondary">
+﻿@using System.Text.Json
+
+<div class="alert alert-secondary">
 	<code>
 		<pre>@(JsonSerializer.Serialize(Data, new JsonSerializerOptions { WriteIndented = true }))</pre>
 	</code>
