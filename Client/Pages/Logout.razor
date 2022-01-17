@@ -1,0 +1,14 @@
+﻿@using PurchaseNexus.Client.Auth
+
+@page "/logout"
+
+@inject NavigationManager NavManager
+@inject IAuthService AuthService
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await AuthService.Logout();
+        NavManager.NavigateTo("/");
+    }
+}

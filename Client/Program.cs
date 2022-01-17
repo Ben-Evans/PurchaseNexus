@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 using PurchaseNexus.Shared.Validators;
 using PurchaseNexus.Client.StartupConfig;
+using PurchaseNexus.Client.Auth;
+using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components.Authorization;
 
 try
 {
@@ -18,13 +21,16 @@ try
     builder.RootComponents.Add<App>("#app");
     builder.RootComponents.Add<HeadOutlet>("head::after");
 
+    // After AddHttpClientInterceptor ?
+    builder.Services.AddScoped<IAuthService, AuthService>();
+    builder.Services.AddBlazoredLocalStorage();
+    builder.Services.AddAuthorizationCore();
+    builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
+
     builder.Services.AddHttpClientInterceptor();
 
     builder.Services.AddScoped(sp =>
-        new HttpClient
-        {
-            BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
-        }.EnableIntercept(sp));
+        new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) }.EnableIntercept(sp));
 
     builder.Services.AddSingleton<IJSInProcessRuntime>(services =>
         (IJSInProcessRuntime)services.GetRequiredService<IJSRuntime>());

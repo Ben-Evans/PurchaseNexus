@@ -1,0 +1,59 @@
+﻿@using PurchaseNexus.Client.Auth
+
+@page "/login"
+
+@inject IAuthService AuthService
+@inject NavigationManager NavManager
+
+<h3>Login</h3>
+
+if (showAuthenticationError) {
+    <div class="alert alert-danger">
+        <p>@authenticationErrorText</p>
+    </div>
+}
+
+<EditForm Model="user" OnValidSubmit="ExecuteLogin" class="card-body bg-light mt-5">
+    <FluentValidationValidator DisableAssemblyScanning="true" />
+
+    <div class="form-group row">
+        <label for="email" class="col-md-2 col-form-label">Email:</label>
+        <div class="col-md-10">
+            <InputText id="email" class="form-control" @bind-Value="user.Email" />
+            <ValidationMessage For="@(() => user.Email)" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="password" class="col-md-2 col-form-label">Password:</label>
+        <div class="col-md-10">
+            <InputText id="password" class="form-control" @bind-Value="user.Password" />
+            <ValidationMessage For="@(() => user.Password)" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <button type="submit" class="btn btn-success">Login</button>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    private AuthenticationUser user = new();
+    private bool showAuthenticationError = false;
+    private string authenticationErrorText = string.Empty;
+
+    private async Task ExecuteLogin()
+    {
+        showAuthenticationError = false;
+
+        AuthenticatedUser? result = await AuthService.Login(user);
+        if (result is not null) NavManager.NavigateTo("/");
+        else
+        {
+            authenticationErrorText = "There was an error when trying to log in.";
+            showAuthenticationError = true;
+        }
+    }
+}
