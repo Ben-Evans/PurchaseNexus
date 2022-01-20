@@ -40,7 +40,7 @@ if (showAuthenticationError) {
 </EditForm>
 
 @code {
-    private AuthenticationUser user = new();
+    private AuthenticationUser user = new(string.Empty, string.Empty);
     private bool showAuthenticationError = false;
     private string authenticationErrorText = string.Empty;
 
