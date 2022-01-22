@@ -1,7 +1,7 @@
 ﻿using Serilog.Core;
 using Serilog.Events;
 
-namespace PurchaseNexus.Server;
+namespace PurchaseNexus.Server.StartupConfig;
 
 /// <summary>
 /// <para>Config for setting up <seealso href="https://github.com/serilog/serilog">Serilog</seealso> logging with .Net Core Web Server.</para>

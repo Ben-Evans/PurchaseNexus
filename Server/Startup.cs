@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
-using PurchaseNexus.Server.Validators;
 using FluentValidation.AspNetCore;
+using PurchaseNexus.Server.StartupConfig;
 
 namespace PurchaseNexus.Server;
 
@@ -17,25 +17,18 @@ public class Startup
     {
         Log.Information("Starting host service configuration.");
 
-        var connectionString = Configuration.GetConnectionString("DefaultConnection");
+        services.AddDatabaseContext(Configuration);
 
-        services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(connectionString));
-
-        services.AddDatabaseDeveloperPageExceptionFilter();
-
-        services.AddControllersWithViews()
-            .AddFluentValidation(config =>
-                config.RegisterValidatorsFromAssemblyContaining<TodoListValidator>())
-            .AddJsonOptions(config =>
-                config.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+        IMvcBuilder mvcBuilder = services.AddApiControllers();
+        
+        mvcBuilder.AddValidators();
+        
+        mvcBuilder.AddJsonOptions(config =>
+            config.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
         services.AddRazorPages();
 
-        services.AddOpenApiDocument(configure =>
-        {
-            configure.Title = "PurchaseNexus API";
-        });
+        services.AddOpenApiDoc();
 
         Log.Information("Completed host service configuration.");
     }
@@ -65,8 +58,7 @@ public class Startup
         app.SetupClientLoggingReceiver();
         app.SetupRequestLogging();
 
-        app.UseSwaggerUi3(configure =>
-            configure.DocumentPath = "/api/v1/specification.json");
+        app.SetupSwaggerUi();
 
         app.UseRouting();
 

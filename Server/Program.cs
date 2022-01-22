@@ -1,4 +1,6 @@
-﻿namespace PurchaseNexus.Server;
+﻿using PurchaseNexus.Server.StartupConfig;
+
+namespace PurchaseNexus.Server;
 
 public class Program
 {

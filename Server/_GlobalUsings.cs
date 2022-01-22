@@ -1,7 +1,17 @@
 ﻿global using FluentValidation;
+global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using PurchaseNexus.Server.Data;
+global using PurchaseNexus.Server.Extensions;
+global using PurchaseNexus.Server.Repositories;
+global using PurchaseNexus.Server.Services;
+global using PurchaseNexus.Server.Validators;
+global using PurchaseNexus.Shared.ApiQueries;
+global using PurchaseNexus.Shared.DomainModels;
+global using PurchaseNexus.Shared.Enums;
+global using PurchaseNexus.Shared.Extensions;
+global using PurchaseNexus.Shared.Interfaces;
 global using PurchaseNexus.Shared.Models;
 global using Serilog;

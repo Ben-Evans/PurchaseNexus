@@ -4,6 +4,8 @@ global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.JSInterop;
 global using Newtonsoft.Json;
 global using PurchaseNexus.Client.Shared;
+global using PurchaseNexus.Shared.ApiQueries;
+global using PurchaseNexus.Shared.DomainModels;
 global using PurchaseNexus.Shared.Models;
 global using PurchaseNexus.Shared.Utilities;
 global using Serilog;
