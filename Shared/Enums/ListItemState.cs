@@ -1,6 +1,6 @@
 ﻿namespace PurchaseNexus.Shared.Enums;
 
-public enum TodoItemState
+public enum ListItemState
 {
     NotStarted,
     InProgress,

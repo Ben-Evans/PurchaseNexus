@@ -59,7 +59,7 @@ public partial class TodoItems
 
         if (SelectedItem.Id == 0)
         {
-            if (string.IsNullOrWhiteSpace(SelectedItem.Title))
+            if (string.IsNullOrWhiteSpace(SelectedItem.Name))
             {
                 State.SelectedList.Items.Remove(SelectedItem);
             }
@@ -72,7 +72,7 @@ public partial class TodoItems
         }
         else
         {
-            if (string.IsNullOrWhiteSpace(SelectedItem.Title))
+            if (string.IsNullOrWhiteSpace(SelectedItem.Name))
             {
                 await State.TodoItemsClient.DeleteTodoItemAsync(SelectedItem.Id);
                 State.SelectedList.Items.Remove(SelectedItem);

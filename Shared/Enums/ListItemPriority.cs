@@ -1,6 +1,6 @@
 ﻿namespace PurchaseNexus.Shared.Enums;
 
-public enum TodoItemPriority
+public enum ListItemPriority
 {
     None,
     Low,

@@ -10,7 +10,7 @@
 		@foreach (var list in State.TodoLists)
 		{
 			<li class="list-group-item @(IsSelected(list) ? "active" : "")" @onclick="@(() => SelectList(list))">
-				@list.Title
+				@list.Name
 			</li>
 		}
 	</ul>
@@ -33,10 +33,10 @@
 							<label for="titleInput">Title</label>
 						</div>
 						<div class="col-auto">
-							<input id="titleInput" @ref="_titleInput" @bind-value="@_newTodoList.Title" type="text" class="form-control" placeholder="Title..." />
+							<input id="titleInput" @ref="_titleInput" @bind-value="@_newTodoList.Name" type="text" class="form-control" placeholder="Title..." />
 						</div>
 						<div class="col-auto">
-							<ValidationMessage For="@(() => _newTodoList.Title)" />
+							<ValidationMessage For="@(() => _newTodoList.Name)" />
 						</div>
 					</div>
 

@@ -1,7 +1,7 @@
 ﻿@if (State.Initialized && State.SelectedList is not null)
 {
 	<div class="clearfix">
-		<h2 class="float-start">@State.SelectedList.Title</h2>
+		<h2 class="float-start">@State.SelectedList.Name</h2>
 		<button id="listOptions" class="btn btn-default float-end" title="List Options..." data-bs-toggle="modal" data-bs-target="#listOptionsModal">
 			<span class="oi oi-ellipses"></span>
 		</button>
@@ -19,12 +19,12 @@
 						@if (!IsSelectedItem(item))
 						{
 							<div class="todo-item-title form-control item-input-control @(item.Done ? "done-todo" : "")" @onclick="@(() => EditItem(item))">
-								<span>@item.Title</span>
+								<span>@item.Name</span>
 							</div>
 						}
 						else
 						{
-							<input @ref="_titleInput" type="text" class="form-control item-input-control" @bind="item.Title" @onblur="UnselectItem" />
+							<input @ref="_titleInput" type="text" class="form-control item-input-control" @bind="item.Name" @onblur="UnselectItem" />
 						}
 					</div>
 				</div>
@@ -52,10 +52,10 @@
 								<label for="titleInput">Title</label>
 							</div>
 							<div class="col-auto">
-								<input id="titleInput" @ref="_titleInput" @bind-value="@State.SelectedList.Title" type="text" class="form-control" placeholder="Title..." />
+								<input id="titleInput" @ref="_titleInput" @bind-value="@State.SelectedList.Name" type="text" class="form-control" placeholder="Title..." />
 							</div>
 							<div class="col-auto">
-								<ValidationMessage For="@(() => State.SelectedList.Title)" />
+								<ValidationMessage For="@(() => State.SelectedList.Name)" />
 							</div>
 						</div>
 

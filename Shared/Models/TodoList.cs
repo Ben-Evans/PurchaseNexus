@@ -1,15 +1,8 @@
 ﻿namespace PurchaseNexus.Shared.Models;
 
-public class TodoList
+public class TodoList : BaseList<TodoItem>
 {
-    public TodoList(string title)
+    public TodoList(string name) : base(name)
     {
-        Title = title;
     }
-
-    public int Id { get; set; }
-
-    public string Title { get; set; }
-
-    public ICollection<TodoItem> Items { get; set; } = new List<TodoItem>();
 }

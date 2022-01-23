@@ -30,7 +30,7 @@ public partial class TodoState
         if (SelectedList is null) throw new NullReferenceException($"Called {nameof(SyncList)} with null {nameof(SelectedList)}");
         else if (defaultTodoList is null) throw new NullReferenceException($"Called {nameof(SyncList)} with null {nameof(defaultTodoList)}");
 
-        defaultTodoList.Title = SelectedList.Title;
+        defaultTodoList.Name = SelectedList.Name;
 
         StateHasChanged();
     }
