@@ -888,6 +888,17 @@
         }
       },
       "TodoItem": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseListItemOfTodoList"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "BaseListItemOfTodoList": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -895,26 +906,26 @@
             "type": "integer",
             "format": "int32"
           },
-          "todoListId": {
+          "listId": {
             "type": "integer",
             "format": "int32"
           },
-          "title": {
+          "name": {
             "type": "string"
           },
           "note": {
             "type": "string"
           },
           "priority": {
-            "$ref": "#/components/schemas/TodoItemPriority"
+            "$ref": "#/components/schemas/ListItemPriority"
           },
           "state": {
-            "$ref": "#/components/schemas/TodoItemState"
+            "$ref": "#/components/schemas/ListItemState"
           },
           "done": {
             "type": "boolean"
           },
-          "todoList": {
+          "list": {
             "nullable": true,
             "oneOf": [
               {
@@ -924,7 +935,7 @@
           }
         }
       },
-      "TodoItemPriority": {
+      "ListItemPriority": {
         "type": "integer",
         "description": "",
         "x-enumNames": [
@@ -940,7 +951,7 @@
           3
         ]
       },
-      "TodoItemState": {
+      "ListItemState": {
         "type": "integer",
         "description": "",
         "x-enumNames": [
@@ -957,6 +968,17 @@
         ]
       },
       "TodoList": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseListOfTodoItem"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "BaseListOfTodoItem": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -964,7 +986,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "title": {
+          "name": {
             "type": "string"
           },
           "items": {
