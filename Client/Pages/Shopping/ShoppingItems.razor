@@ -1,0 +1,74 @@
+﻿@if (State.Initialized && State.SelectedList is not null)
+{
+	<div class="clearfix">
+		<h2 class="float-start">@State.SelectedList.Name</h2>
+		<button id="listOptions" class="btn btn-default float-end" title="List Options..." data-bs-toggle="modal" data-bs-target="#listOptionsModal">
+			<span class="oi oi-ellipses"></span>
+		</button>
+	</div>
+
+	<ul id="list-items" class="list-group mb-2">
+		@foreach (var item in State.SelectedList.Items)
+		{
+			<li class="list-group-item">
+				<div class="d-flex">
+					<div class="list-item-checkbox">
+						<input type="checkbox" checked="@item.Done" @onchange="@((e) => ToggleDone(item, e))" />
+					</div>
+					<div class="flex-fill">
+						@if (!IsSelectedItem(item))
+						{
+							<div class="list-item-name form-control item-input-control @(item.Done ? "checked-off" : "")" @onclick="@(() => EditItem(item))">
+								<span>@item.Name</span>
+							</div>
+						}
+						else
+						{
+							<input @ref="_itemNameInput" type="text" class="form-control item-input-control" @bind="item.Name" @onblur="UnselectItem" />
+						}
+					</div>
+				</div>
+			</li>
+		}
+		<li class="list-group-item" @onclick="AddItem">
+			<button class="btn btn-default">Add Item...</button>
+		</li>
+	</ul>
+
+	<div @ref="_listOptionsModal" class="modal fade" id="listOptionsModal" tabindex="-1" aria-labelledby="listOptionsModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="listOptionsModalLabel">List Options</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<EditForm Model="@State.SelectedList" OnValidSubmit="@SaveList">
+					<div class="modal-body">
+
+						<FluentValidationValidator DisableAssemblyScanning="true" />
+
+						<div class="row g-3 align-items-center">
+							<div class="col-auto">
+								<label for="nameInput">Title</label>
+							</div>
+							<div class="col-auto">
+								<input id="nameInput" @ref="_itemNameInput" @bind-value="@State.SelectedList.Name" type="text" class="form-control" placeholder="Title..." />
+							</div>
+							<div class="col-auto">
+								<ValidationMessage For="@(() => State.SelectedList.Name)" />
+							</div>
+						</div>
+
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button type="button" class="btn btn-default text-danger" @onclick="DeleteList">Delete</button>
+						<span>
+							<button type="submit" class="btn btn-primary">Update</button>
+							<button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
+						</span>
+					</div>
+				</EditForm>
+			</div>
+		</div>
+	</div>
+}

@@ -137,6 +137,351 @@
         }
       }
     },
+    "/api/ShoppingItems/{id}": {
+      "get": {
+        "tags": [
+          "ShoppingItems"
+        ],
+        "operationId": "ShoppingItems_GetItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShoppingItem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ShoppingItems"
+        ],
+        "operationId": "ShoppingItems_PutItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
+        "requestBody": {
+          "x-name": "item",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShoppingItem"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 2
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ShoppingItems"
+        ],
+        "operationId": "ShoppingItems_DeleteItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ShoppingItems": {
+      "post": {
+        "tags": [
+          "ShoppingItems"
+        ],
+        "operationId": "ShoppingItems_PostItem",
+        "requestBody": {
+          "x-name": "item",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShoppingItem"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShoppingItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ShoppingLists": {
+      "get": {
+        "tags": [
+          "ShoppingLists"
+        ],
+        "operationId": "ShoppingLists_GetLists",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShoppingList"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ShoppingLists"
+        ],
+        "operationId": "ShoppingLists_PostList",
+        "requestBody": {
+          "x-name": "list",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShoppingList"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShoppingList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ShoppingLists/{id}": {
+      "get": {
+        "tags": [
+          "ShoppingLists"
+        ],
+        "operationId": "ShoppingLists_GetList",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShoppingList"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ShoppingLists"
+        ],
+        "operationId": "ShoppingLists_PutList",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
+        "requestBody": {
+          "x-name": "list",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShoppingList"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 2
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ShoppingLists"
+        ],
+        "operationId": "ShoppingLists_DeleteList",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/TodoItems/{id}": {
       "get": {
         "tags": [
@@ -887,6 +1232,116 @@
           }
         }
       },
+      "ShoppingItem": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseListItemOfShoppingList"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "BaseListItemOfShoppingList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "listId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "priority": {
+            "$ref": "#/components/schemas/ListItemPriority"
+          },
+          "state": {
+            "$ref": "#/components/schemas/ListItemState"
+          },
+          "done": {
+            "type": "boolean"
+          },
+          "list": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ShoppingList"
+              }
+            ]
+          }
+        }
+      },
+      "ListItemPriority": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "None",
+          "Low",
+          "Medium",
+          "High"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "ListItemState": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "NotStarted",
+          "InProgress",
+          "Blocked",
+          "Done"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "ShoppingList": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseListOfShoppingItem"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "BaseListOfShoppingItem": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShoppingItem"
+            }
+          }
+        }
+      },
       "TodoItem": {
         "allOf": [
           {
@@ -934,38 +1389,6 @@
             ]
           }
         }
-      },
-      "ListItemPriority": {
-        "type": "integer",
-        "description": "",
-        "x-enumNames": [
-          "None",
-          "Low",
-          "Medium",
-          "High"
-        ],
-        "enum": [
-          0,
-          1,
-          2,
-          3
-        ]
-      },
-      "ListItemState": {
-        "type": "integer",
-        "description": "",
-        "x-enumNames": [
-          "NotStarted",
-          "InProgress",
-          "Blocked",
-          "Done"
-        ],
-        "enum": [
-          0,
-          1,
-          2,
-          3
-        ]
       },
       "TodoList": {
         "allOf": [

@@ -16,6 +16,10 @@ public static class DatabaseConfig
         string connectionString = config.GetConnectionString("DefaultConnection");
 
         services.AddSqlServer<ApplicationDbContext>(connectionString);
+        /*1. services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(connectionString));
+        2.
+        builder.Services.AddSqlServer<ApplicationDbContext>(connectionString, x => x.MigrationsAssembly(nameof(DataAccess)));*/
 
         services.AddDatabaseDeveloperPageExceptionFilter();
     }

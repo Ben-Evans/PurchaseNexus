@@ -2,7 +2,11 @@
 
 public class GroceryItem : ShoppingItem
 {
-    public GroceryItem(
+    public GroceryItem(string name, int listId) : base(name, listId)
+    {
+    }
+
+    /*public GroceryItem(
         string name,
         // ProductType productType, // TODO: Reevaluate
         bool isPurchased,
@@ -12,7 +16,7 @@ public class GroceryItem : ShoppingItem
         int quantityToAddWhenDisposed = 0)
         : base(name, isPurchased, allowSubstitutions, quantity, quantityToAddWhenDisposed) // , shoppingList
     {
-    }
+    }*/
 
     public DateTime? ExpiryDate { get; set; } // TODO: Switch to DateOnly? when SQL/EF supports it
 

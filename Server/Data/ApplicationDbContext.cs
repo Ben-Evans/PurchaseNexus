@@ -16,6 +16,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<GroceryDepartment> GroceryDepartments => Set<GroceryDepartment>();
     public DbSet<Brand> Brands => Set<Brand>();
     public DbSet<Store> Stores => Set<Store>();
+    public DbSet<ShoppingList> ShoppingLists => Set<ShoppingList>();
+    public DbSet<ShoppingItem> ShoppingItems => Set<ShoppingItem>();
 
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {

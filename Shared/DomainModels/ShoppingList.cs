@@ -1,15 +1,8 @@
 ﻿namespace PurchaseNexus.Shared.DomainModels;
 
-public class ShoppingList : INamedDomainModel
+public class ShoppingList : BaseList<ShoppingItem>
 {
-    public ShoppingList(string name)
+    public ShoppingList(string name) : base(name)
     {
-        Name = name;
     }
-
-    public int Id { get; set; }
-
-    public string Name { get; set; }
-
-    public IList<ShoppingItem> ShoppingItems { get; set; } = new List<ShoppingItem>();
 }

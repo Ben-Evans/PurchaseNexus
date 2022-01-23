@@ -1,29 +1,9 @@
 ﻿namespace PurchaseNexus.Shared.DomainModels;
 
-// Uses same properties as Product, but shouldn't need to rely on Product existing
-public class ShoppingItem : Product
+// TODO: Uses same properties as Product, but shouldn't need to rely on Product existing?
+public class ShoppingItem : BaseListItem<ShoppingList>
 {
-    public ShoppingItem(
-        string name,
-        // ProductType productType, // TODO: Reevaluate
-        bool isPurchased,
-        bool allowSubstitutions,
-        // ShoppingList shoppingList,
-        int quantity = 1,
-        int quantityToAddWhenDisposed = 0)
-        : base(name, quantity, quantityToAddWhenDisposed)
+    public ShoppingItem(string name, int listId) : base(name, listId)
     {
-        IsPurchased = isPurchased;
-        AllowSubstitutions = allowSubstitutions;
-        //ShoppingList = shoppingList;
     }
-
-    public bool IsPurchased { get; set; }
-
-    public string? Notes { get; set; }
-
-    public bool AllowSubstitutions { get; set; } // For use with (Preferred)Brand & (Preferred)Store
-
-    public ShoppingList ShoppingList { get; set; }
-    public int ShoppingListId { get; set; }
 }

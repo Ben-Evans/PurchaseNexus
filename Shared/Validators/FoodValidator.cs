@@ -14,6 +14,8 @@ public class FoodValidator : AbstractValidator<Food>, IFoodValidator
         RuleFor(x => x.QuantityToAddWhenDisposed).GreaterThanOrEqualTo(0);
         // RuleFor(x => x.Url).LessThanOrEqualTo(100).Unless(x => x == null); // TODO: Need to workaround nullable strings
         RuleFor(x => x.Measurement).GreaterThan(0);
+        // RuleFor(x => x.MeasurementType).IsInEnumeration(); // TODO: Value conversion?
+        // RuleFor(x => x.ToDelete).NotEqual(true).When(x => !x.IsSaved()).WithMessage("Cannot delete unsaved values."); // TODO: Reconsider delete strategy
         RuleFor(x => x.ExpiryDate).GreaterThanOrEqualTo(DateTime.Today).WithMessage("Expiry date cannot be older than today.");
     }
 }
